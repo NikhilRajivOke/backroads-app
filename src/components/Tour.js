@@ -6,7 +6,7 @@ const Tour = () => {
 
   useEffect(() => {
     const data = async () => {
-      const newData = await axios
+      await axios
         .get("http://localhost:5000/toursData")
         .then((resp) => setToursData(resp.data.data));
     };
