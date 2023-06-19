@@ -1,7 +1,18 @@
-import React from 'react'
-import { toursData } from '../data';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const Tour = () => {
+  const [toursData, setToursData] = useState([]);
+
+  useEffect(() => {
+    const data = async () => {
+      const newData = await axios
+        .get("http://localhost:5000/toursData")
+        .then((resp) => setToursData(resp.data.data));
+    };
+    data();
+  }, [toursData]);
+
   return (
     <div className="section-center featured-center">
       {toursData.map((data) => {
@@ -33,6 +44,6 @@ const Tour = () => {
       })}
     </div>
   );
-}
+};
 
-export default Tour
+export default Tour;
